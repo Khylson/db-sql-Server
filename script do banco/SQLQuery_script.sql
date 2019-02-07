@@ -1,11 +1,12 @@
 -- Ezequiel Manuel Muxito --
+-- este script Ã© uma prova 
 
 -- script do banco de dados 
 create database db_Gerencia;
 
 use db_Gerencia;
 
--- criação de tabelas 
+-- criaÃ§Ã£o de tabelas 
 
 -- tabela Banco 
 create table tb_Banco(
@@ -72,7 +73,7 @@ select * from tb_Cliente;
 
  -- tabela tb_tipo_Conta 
 insert into tb_tipo_Conta (Nome_conta) values ('Conta Corrente');
-insert into tb_tipo_Conta (Nome_conta) values ('Conta Poupança');
+insert into tb_tipo_Conta (Nome_conta) values ('Conta PoupanÃ§a');
 
 -- consultas - select 
 select * from tb_tipo_Conta;
@@ -99,8 +100,8 @@ select * from tb_Conta c
 	inner join tb_Banco b
 	on a.Id_banco = b.Id_banco;
 
--- 2 - O cliente Carlos deseja transferir 500,00 de sua conta corrente para a sua poupança
--- Obs: Necessário a criação de 2 updates
+-- 2 - O cliente Carlos deseja transferir 500,00 de sua conta corrente para a sua poupanÃ§a
+-- Obs: NecessÃ¡rio a criaÃ§Ã£o de 2 updates
 
 update tb_Conta
 	set Saldo_conta = Saldo_conta - 500.00
@@ -112,7 +113,7 @@ update tb_Conta
 	where Numero_conta = '1122344-33'
 	and tipo_conta = 2;
 
--- 3 – Mostre a soma do saldo das contas correntes dos clientes agrupadas por banco
+-- 3 â€“ Mostre a soma do saldo das contas correntes dos clientes agrupadas por banco
 -- Ex: Nome_banco , valor
 -- Santander , 1252,23
 -- Bradesco , 14945,90
@@ -124,17 +125,17 @@ select b.nome Nome, SUM(c.Saldo_conta) Valor from tb_Conta c
 	on a.Id_banco = b.Id_banco
 	group by (b.nome);
 
--- 4 - Mostre qual é a única agência que não possui contas abertas
+-- 4 - Mostre qual Ã© a Ãºnica agÃªncia que nÃ£o possui contas abertas
 
 select a.Nome_agencia Nome_agencia, sum(c.Id_cliente) Quantidade from tb_Conta c
 	right join tb_Agencia a on c.Id_agencia = a.Id_agencia
 	where c.Id_agencia is null
 	group by (a.Nome_agencia);
 
--- 5 - Mostre a quantidade de clientes (somente conta corrente) por agência
+-- 5 - Mostre a quantidade de clientes (somente conta corrente) por agÃªncia
 -- Ex: Nome_Agencia, quantidade
 
-select a.Nome_agencia Nome_Agência, sum(c.Id_cliente) Quantidade from tb_Conta c
+select a.Nome_agencia Nome_AgÃªncia, sum(c.Id_cliente) Quantidade from tb_Conta c
 	inner join tb_Agencia a
 	on c.Id_agencia = a.Id_agencia
 	inner join tb_Banco b
