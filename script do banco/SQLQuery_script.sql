@@ -1,5 +1,5 @@
 -- Ezequiel Manuel Muxito --
--- este script é uma prova 
+-- este script foi feito para uma prova 
 
 -- script do banco de dados 
 create database db_Gerencia;
